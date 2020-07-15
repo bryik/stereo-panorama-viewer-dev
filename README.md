@@ -1,6 +1,6 @@
 # stereo-panorama-viewer
 
-TODO: fill in details
+View stereoscopic panoramas in your browser!
 
 ## usage
 
