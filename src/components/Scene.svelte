@@ -10,8 +10,8 @@
   let scene;
   let panoDisplay;
   // droppedImage is a base64 encoded image populated after a panorama is dragged
-  // and dropped. It starts out as the default panorama (loaded from imgur).
-  let droppedImage = "https://i.imgur.com/PgAHSy8.jpg";
+  // and dropped.
+  let droppedImage;
 
   onMount(async () => {
     // Wait for A-Frame to load before attempting to manipulate the scene.
@@ -59,7 +59,7 @@
     function onImageLoad(event) {
       const image = event.target.result;
       droppedImage = image;
-      remoteUrl.set("");
+      remoteUrl.set(null);
     }
 
     const reader = new FileReader();

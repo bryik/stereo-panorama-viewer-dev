@@ -14,9 +14,12 @@
     const querystring = getQuerystring();
 
     if (querystring.has("url")) {
-      // If the querystring contains a url to a panorama, update the panoUrl store.
+      // If the querystring contains a url to a panorama, update the store.
       let url = querystring.get("url");
       remoteUrl.set(url);
+    } else {
+      // Navigate to the default pano.
+      remoteUrl.set("https://i.imgur.com/PgAHSy8.jpg");
     }
 
     if (querystring.has("embedded")) {
