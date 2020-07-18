@@ -9,9 +9,26 @@
   export let visible = true;
 
   // Local state
-  const urlPlaceholder = "https://i.imgur.com/xLc3Kj7.jpg";
-  let urlInputValue = $remoteUrl || "";
+  let urlInputValue = "";
   let minimized = false;
+  const examples = [
+    {
+      url: "https://i.imgur.com/PgAHSy8.jpg",
+      label: "Red pond (The Witness)"
+    },
+    {
+      url: "https://i.imgur.com/xLc3Kj7.jpg",
+      label: "Reaching out (The Witness)"
+    },
+    {
+      url: "https://i.imgur.com/xlrCeyV.jpg",
+      label: "Kaer Morhen Balcony (Witcher 3)"
+    },
+    {
+      url: "https://i.imgur.com/hD2QXlF.jpg",
+      label: "Mount Kilimanjaro (real life)"
+    }
+  ];
 
   function toggleMinimized() {
     minimized = !minimized;
@@ -32,6 +49,10 @@
 
   button {
     border: none;
+  }
+
+  summary {
+    cursor: pointer;
   }
 </style>
 
@@ -59,6 +80,33 @@
         URL below.
       </p>
 
+      <details>
+        <summary class="f5 lh-copy">Examples</summary>
+        {#each examples as { url, label }, i}
+          {#if url === $remoteUrl}
+            <p
+              class="f5 lh-copy ml3 b"
+              style="cursor: pointer"
+              on:click={() => {
+                urlInputValue = url;
+                handleLoadClick();
+              }}>
+              {label}
+            </p>
+          {:else}
+            <p
+              class="f5 lh-copy ml3"
+              style="cursor: pointer"
+              on:click={() => {
+                urlInputValue = url;
+                handleLoadClick();
+              }}>
+              {label}
+            </p>
+          {/if}
+        {/each}
+      </details>
+
       <div class="pa3 black-80">
         <div class="measure-narrow">
           <label for="pano-url" class="f6 b db mb2">URL</label>
@@ -68,7 +116,7 @@
             id="pano-url"
             aria-describedby="pano-desc"
             bind:value={urlInputValue}
-            placeholder={urlPlaceholder}
+            placeholder="https://i.imgur.com/xLc3Kj7.jpg"
             required />
           <small id="pano-desc" class="f6 lh-copy black-60 db mb2">
             Must be a direct link to a stereo panorama hosted on a CORS-enabled
