@@ -37,7 +37,9 @@ AFRAME.registerComponent("overunder", {
     this.rightSphere = this.createImageSphere(this.material, "right");
     this.imageSphere.add(this.rightSphere);
 
-    el.setObject3D("imageSphere", this.imageSphere);
+    el.setObject3D("imageSpheres", this.imageSphere);
+
+    this.createImageSphere = this.createImageSphere.bind(this);
   },
 
   /**
@@ -79,8 +81,10 @@ AFRAME.registerComponent("overunder", {
   remove: function () {
     this.material.map.dispose();
     this.material.dispose();
-    this.leftSphere.dispose();
-    this.rightSphere.dispose();
+    this.leftSphere.material.dispose();
+    this.leftSphere.geometry.dispose();
+    this.rightSphere.material.dispose();
+    this.rightSphere.geometry.dispose();
     this.el.removeObject3D("imageSpheres");
   },
 
