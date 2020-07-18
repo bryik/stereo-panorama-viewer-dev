@@ -1,10 +1,10 @@
 <script>
   import { onMount } from "svelte";
 
-  import { remoteUrl } from "./stores.js";
-  import { getQuerystring } from "./utils/querystring.js";
   import Instructions from "./components/Instructions.svelte";
   import Scene from "./components/Scene.svelte";
+  import { remoteUrl } from "./stores.js";
+  import { getQuerystring } from "./utils/querystring.js";
 
   // If true, the instructions will be hidden.
   let instructionsVisible = true;
