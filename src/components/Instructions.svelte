@@ -10,18 +10,14 @@
 
   // Local state
   const urlPlaceholder = "https://i.imgur.com/xLc3Kj7.jpg";
-  $: urlInputValue = $remoteUrl;
+  let urlInputValue = $remoteUrl || "";
   let minimized = false;
 
   // TODO:
   //   - Add URL validation and error messages.
 
-  function handleMinimizedClick() {
-    minimized = false;
-  }
-
-  function handleCloseClick() {
-    minimized = true;
+  function toggleMinimized() {
+    minimized = !minimized;
   }
 
   function handleLoadClick() {
@@ -46,7 +42,7 @@
     <div
       class="instructions glow br2 ph3 pv2 mb2 dib bg-near-white fr o-20"
       style="cursor: pointer;"
-      on:click={handleMinimizedClick}>
+      on:click={toggleMinimized}>
       ...
     </div>
   {:else}
@@ -89,7 +85,7 @@
         id="close-button"
         class="f6 link dim br2 ph3 pv2 mb2 dib white bg-red fr"
         style="cursor: pointer;"
-        on:click={handleCloseClick}>
+        on:click={toggleMinimized}>
         Close
       </div>
     </div>
