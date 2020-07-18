@@ -13,17 +13,11 @@
   let urlInputValue = $remoteUrl || "";
   let minimized = false;
 
-  // TODO:
-  //   - Add URL validation and error messages.
-
   function toggleMinimized() {
     minimized = !minimized;
   }
 
   function handleLoadClick() {
-    if (urlInputValue === "") {
-      urlInputValue = urlPlaceholder;
-    }
     remoteUrl.set(urlInputValue);
   }
 </script>
@@ -34,6 +28,10 @@
     z-index: 10;
     left: 1rem;
     top: 1rem;
+  }
+
+  button {
+    border: none;
   }
 </style>
 
@@ -46,7 +44,9 @@
       ...
     </div>
   {:else}
-    <div class="instructions avenir ma3 pa3 bg-near-white br3 shadow-4">
+    <form
+      on:submit|preventDefault={handleLoadClick}
+      class="instructions avenir ma3 pa3 bg-near-white br3 shadow-4">
       <GithubCorner repoUrl="https://github.com/bryik/overunder-aframe" />
       <h1 class="f4 f3-ns lh-title">Stereo Panorama Viewer</h1>
       <p class="lh-copy f5 measure">
@@ -58,6 +58,7 @@
         (over/under) stereo panorama into this window. Alternatively, provide a
         URL below.
       </p>
+
       <div class="pa3 black-80">
         <div class="measure-narrow">
           <label for="pano-url" class="f6 b db mb2">URL</label>
@@ -67,27 +68,28 @@
             id="pano-url"
             aria-describedby="pano-desc"
             bind:value={urlInputValue}
-            placeholder={urlPlaceholder} />
+            placeholder={urlPlaceholder}
+            required />
           <small id="pano-desc" class="f6 lh-copy black-60 db mb2">
             Must be a direct link to a stereo panorama hosted on a CORS-enabled
             host (e.g. Imgur).
           </small>
         </div>
       </div>
-      <div
+      <button
         id="load-button"
         class="f6 link dim br2 ph3 pv2 mb2 dib white bg-near-black"
         style="cursor: pointer;"
-        on:click={handleLoadClick}>
+        type="submit">
         Load
-      </div>
-      <div
+      </button>
+      <button
         id="close-button"
         class="f6 link dim br2 ph3 pv2 mb2 dib white bg-red fr"
         style="cursor: pointer;"
         on:click={toggleMinimized}>
         Close
-      </div>
-    </div>
+      </button>
+    </form>
   {/if}
 </div>
