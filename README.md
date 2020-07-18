@@ -1,5 +1,5 @@
 
-**Deprecated**
+⚠️ **Deprecated!**
 
 This repo was used to experiment with a rebuild of another project I was working on. The experiment was a success and the final version can be found in this repo: [stereo-panorama-viewer](https://github.com/bryik/stereo-panorama-viewer)
 
