@@ -133,6 +133,7 @@
       </button>
       <button
         id="close-button"
+        type="button"
         class="f6 link dim br2 ph3 pv2 mb2 dib white bg-red fr"
         style="cursor: pointer;"
         on:click={toggleMinimized}>
